@@ -1,0 +1,282 @@
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+.header {
+  background-color: #4a90e2;
+  color: #fff;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.header nav a {
+  color: #fff;
+  margin: 0 1rem;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.header nav a:hover {
+  color: #e1e1e1;
+}
+
+.product-list {
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.product {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.product img {
+  max-width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 1rem;
+}
+
+.product h2 {
+  margin: 0.5rem 0;
+  font-size: 1.25rem;
+}
+
+.product p {
+  color: #666;
+  margin: 0.5rem 0;
+}
+
+.quantity-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+.quantity-controls button {
+  background-color: #4a90e2;
+  border: none;
+  color: #fff;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.quantity-controls button:hover {
+  background-color: #357ab9;
+}
+
+.quantity-controls span {
+  margin: 0 1rem;
+}
+
+.product button {
+  background-color: #4a90e2;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.product button:hover {
+  background-color: #357ab9;
+}
+
+.cart-menu {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 350px;
+  height: 100%;
+  background-color: #fff;
+  border-left: 1px solid #ccc;
+  padding: 1rem;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.cart-menu.open {
+  transform: translateX(0);
+}
+
+.cart-menu .close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.cart-menu h2 {
+  margin-top: 0;
+}
+
+.cart-menu ul {
+  list-style: none;
+  padding: 0;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.cart-item {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-item-name {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.cart-menu .quantity-controls {
+  display: flex;
+  align-items: center;
+}
+
+.cart-menu .quantity-controls button {
+  margin: 0 0.5rem;
+}
+
+.cart-menu .remove-button {
+  margin-left: 1rem;
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.cart-total {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.cart-menu-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.cart-menu-actions button, .cart-menu-actions a {
+  background-color: #4a90e2;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  margin: 0 0.5rem;
+}
+
+.cart-menu-actions button:hover, .cart-menu-actions a:hover {
+  background-color: #357ab9;
+}
+
+.cart-page, .login-page, .payment-form, .invoice-page {
+  padding: 2rem;
+}
+
+.cart-page h2, .login-page h2, .payment-form h2, .invoice-page h2 {
+  margin-top: 0;
+}
+
+.cart-page ul {
+  list-style: none;
+  padding: 0;
+}
+
+.cart-page li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-page .quantity-controls {
+  display: flex;
+  align-items: center;
+}
+
+.cart-page .quantity-controls button {
+  margin: 0 0.5rem;
+}
+
+.cart-page .cart-total {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.cart-page .cart-menu-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.cart-page .cart-menu-actions a {
+  background-color: #4a90e2;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.cart-page .cart-menu-actions a:hover {
+  background-color: #357ab9;
+}
+
+.login-page form div, .payment-form form div {
+  margin-bottom: 1rem;
+}
+
+.login-page form label, .payment-form form label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.login-page form input, .payment-form form input, .payment-form form select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.invoice-page p {
+  margin: 1rem 0;
+}
