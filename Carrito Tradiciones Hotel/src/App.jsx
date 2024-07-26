@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import ProductList from './components/ProductList';
 import CartMenu from './components/CartMenu';
@@ -7,13 +7,9 @@ import CartPage from './components/CartPage';
 import SalesReport from './components/SalesReport';
 import InvoiceForm from './components/InvoiceForm';
 import InvoicePDF from './components/InvoicePDF';
+import axios from 'axios'; // Importar axios
 
-const initialProducts = [
-  { id: 1, name: 'Habitación Doble.', price: 80000, image: '/images/habitación doble.jpg' },
-  { id: 2, name: 'Habitación Multiple', price: 120000, image: '/images/Habitación multiple 2.jpg' },
-  { id: 3, name: 'Habitación sancilla', price: 50000, image: '/images/Habitación sencilla.jpg' },
-  { id: 4, name: 'Salón Social', price: 200000, image: '/images/salon social, café.JPG' },
-];
+const initialProducts = [];
 
 
 const initialSalesData = [
@@ -32,13 +28,44 @@ const initialSalesData = [
   { time: '2024-06-01', value: 700 },
 ];
 
+// Función de mapeo para transformar los datos de la API
+const mapProductData = (product) => {
+  return {
+    id: product._id,
+    name: product.nombre, 
+    price: product.precio,
+    imagen: product.imagen,
+    // Agrega más mapeos según sea necesario
+  };
+};
+
 const App = () => {
-  const [products] = useState(initialProducts);
+  const [products, setProducts] = useState(initialProducts);
   const [salesData] = useState(initialSalesData);
   const [cartItems, setCartItems] = useState([]);
   const [showCartMenu, setShowCartMenu] = useState(false);
   const [paymentInfo, setPaymentInfo] = useState({});
   const navigate = useNavigate();
+  const location = useLocation(); // Usar useLocation para rastrear la ubicación
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/productos');
+        console.log('Productos desde la API:', response.data);
+        // Mapeamos los productos antes de establecerlos en el estado
+        const mappedProducts = response.data.map(mapProductData);
+        setProducts(mappedProducts);
+      } catch (error) {
+        console.error('Error al obtener los productos', error);
+      }
+    };
+
+    if (location.pathname === '/') {
+      fetchProducts();
+    }
+  }, [location.pathname]);
+  
 
   const handleAddToCart = (product, quantity) => {
     const existingItem = cartItems.find(item => item.product.id === product.id);
