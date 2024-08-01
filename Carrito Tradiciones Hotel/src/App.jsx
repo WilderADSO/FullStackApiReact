@@ -10,10 +10,9 @@ import InvoicePDF from './components/InvoicePDF';
 import axios from 'axios'; // Importar axios
 import Register from './components/Register';
 import Login from './components/Login';
-
+import ManageProducts from './components/ManageProducts';
 
 const initialProducts = [];
-
 
 const initialSalesData = [
   { time: '2023-01-01', value: 100 },
@@ -35,7 +34,7 @@ const initialSalesData = [
 const mapProductData = (product) => {
   return {
     id: product._id,
-    name: product.nombre, 
+    name: product.nombre,
     price: product.precio,
     imagen: product.imagen,
     // Agrega más mapeos según sea necesario
@@ -68,7 +67,6 @@ const App = () => {
       fetchProducts();
     }
   }, [location.pathname]);
-  
 
   const handleAddToCart = (product, quantity) => {
     const existingItem = cartItems.find(item => item.product.id === product.id);
@@ -108,6 +106,7 @@ const App = () => {
   const handlePaymentInfo = (info) => {
     setPaymentInfo(info);
   };
+
   const PrivateRoute = ({ children }) => {
     const role = localStorage.getItem('role');
     return role === 'admin' ? children : <div>No tienes acceso a esta página</div>;
@@ -115,15 +114,12 @@ const App = () => {
 
   return (
     <div className="app">
-  
       <Header cartCount={cartItems.length} />
- 
       <Routes>
         <Route
           path="/"
           element={<ProductList products={products} onAddToCart={handleAddToCart} />}
         />
-       
         <Route
           path="/cart"
           element={<CartPage
@@ -133,15 +129,14 @@ const App = () => {
             onReduceQuantity={handleReduceQuantity}
           />}
         />
-        
         <Route path="/sales-report" element={<SalesReport data={salesData} />} />
-        <Route path="/invoice" element={<InvoiceForm cartItems={cartItems} />} />
+        <Route path="/invoice" element={<InvoiceForm cartItems={cartItems} habitacionId={cartItems.length > 0 ? cartItems[0].product.id : ''} />} />
         <Route path="/invoice-pdf" element={<InvoicePDF />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        
-      </Routes>
+        <Route path="/manage-products" element={<PrivateRoute><ManageProducts /></PrivateRoute>} />
 
+      </Routes>
       {showCartMenu && (
         <CartMenu
           cartItems={cartItems}
@@ -151,7 +146,6 @@ const App = () => {
           onReduceQuantity={handleReduceQuantity}
         />
       )}
-
     </div>
   );
 };
