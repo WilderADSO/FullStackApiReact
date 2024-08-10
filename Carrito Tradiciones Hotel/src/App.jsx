@@ -11,6 +11,8 @@ import axios from 'axios'; // Importar axios
 import Register from './components/Register';
 import Login from './components/Login';
 import ManageProducts from './components/ManageProducts';
+import Pedidos from './components/Pedidos';
+
 
 const initialProducts = [];
 
@@ -55,6 +57,7 @@ const App = () => {
       try {
         const response = await axios.get('http://localhost:5000/api/productos');
         console.log('Productos desde la API:', response.data);
+        
         // Mapeamos los productos antes de establecerlos en el estado
         const mappedProducts = response.data.map(mapProductData);
         setProducts(mappedProducts);
@@ -135,6 +138,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/manage-products" element={<PrivateRoute><ManageProducts /></PrivateRoute>} />
+        <Route path="/pedidos" element={<Pedidos />} /> {/* Nueva ruta para el componente Pedidos */}
 
       </Routes>
       {showCartMenu && (

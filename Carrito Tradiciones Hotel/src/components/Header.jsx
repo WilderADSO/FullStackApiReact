@@ -30,7 +30,7 @@ const Header = ({ cartCount }) => {
 
   return (
     <header className="header">
-      <h1>SGCI</h1>
+      <h1>TRAD </h1>
       <nav>
         <Link to="/">Inicio</Link>
         <Link to="/cart">Carrito ({cartCount})</Link>
@@ -39,7 +39,7 @@ const Header = ({ cartCount }) => {
         {user.role === 'admin' && <Link to="/manage-orders">G. Pedidos</Link>} {/* Link a la gestión de pedidos */}
         {user.username ? (
           <>
-            <Link to="/pedidos">Mis Pedidos</Link> {/* Enlace a los pedidos */}
+            <Link to="/pedidos">Mis Reservas</Link> {/* Enlace a los pedidos */}
             <span>  <Link to="/update-user">Bienvenido, {user.username} ({user.role})</Link></span>
             <Link to="/" onClick={handleLogout}>Cerrar S.</Link>
           </>
