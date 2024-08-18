@@ -19,8 +19,7 @@ const Header = ({ cartCount }) => {
       setUser({
         username: localStorage.getItem('username'),
         role: localStorage.getItem('role')
-      });
-    };
+      });    };
 
     window.addEventListener('storage', handleStorageChange);
     return () => {
@@ -37,8 +36,7 @@ const Header = ({ cartCount }) => {
         <Link to="/sales-report">Reporte de Ventas</Link>
         {user.role === 'admin' && <Link to="/manage-products">G. Productos</Link>}
         {user.role === 'admin' && <Link to="/manage-orders">G. Pedidos</Link>} {/* Link a la gestión de pedidos */}
-        {user.role === 'admin' && <Link to="/manage-orders">G. Pedidos</Link>} {/* Link a la gestión de pedidos */}
-        {user.username ? (
+               {user.username ? (
           <>
             <Link to="/pedidos">Mis Reservas</Link> {/* Enlace a los pedidos */}
             <span>  <Link to="/update-user">Bienvenido, {user.username} ({user.role})</Link></span>

@@ -39,7 +39,7 @@ const ModalOrders = ({ order, setSelectedOrder, setOrders, setFilteredOrders, or
     <div className="modal">
       <div className="modal-contenido">
         <button className="cerrar-boton" onClick={() => setSelectedOrder(null)}>×</button>
-        <h3>Actualizar Pedido</h3>
+        <h3>Actualizar Reserva</h3>
         <div className="form-fila">
           <label>
             Estado:
@@ -48,40 +48,43 @@ const ModalOrders = ({ order, setSelectedOrder, setOrders, setFilteredOrders, or
               onChange={(e) => setSelectedOrder({ ...order, estado: e.target.value })}
               className="estado-select"
             >
-              <option value="PENDIENTE">Pendiente</option>
-              <option value="PAGADO">Pagado</option>
-              <option value="ENVIADO">Enviado</option>
+              <option value="RESERVADO">RESERVADO</option>
+              <option value="HOSPEDADO">HOSPEDADO</option>
+              <option value="CHECK-IN">CHECK-IN</option>
+              <option value="CHECK-OUT">CHECK-OUT</option>
+              <option value="DISPONIBLE">DISPONIBLE</option>
+              <option value="MANTENIMIENTO">MANTENIMIENTO</option>
             </select>
           </label>
         </div>
         <div className="form-fila">
           <div className="form-columna">
             <label>
-              Nombre de Envío:
+              Nombre de Reserva:
               <input
                 type="text"
-                value={order.nombreEnvio}
+                value={order.nombreReserva}
                 onChange={(e) => setSelectedOrder({ ...order, nombreEnvio: e.target.value })}
               />
             </label>
           </div>
           <div className="form-columna">
             <label>
-              Teléfono de Envío:
+              Teléfono de Reserva:
               <input
                 type="text"
-                value={order.telefonoEnvio}
-                onChange={(e) => setSelectedOrder({ ...order, telefonoEnvio: e.target.value })}
+                value={order.telefonoReserva}
+                onChange={(e) => setSelectedOrder({ ...order, telefonoReserva: e.target.value })}
               />
             </label>
           </div>
           <div className="form-columna">
             <label>
-              Dirección de Envío:
+              Email de Reserva:
               <input
                 type="text"
                 value={order.direccionEnvio}
-                onChange={(e) => setSelectedOrder({ ...order, direccionEnvio: e.target.value })}
+                onChange={(e) => setSelectedOrder({ ...order, emailreserva: e.target.value })}
               />
             </label>
           </div>
@@ -92,8 +95,8 @@ const ModalOrders = ({ order, setSelectedOrder, setOrders, setFilteredOrders, or
               Barrio:
               <input
                 type="text"
-                value={order.barrioEnvio}
-                onChange={(e) => setSelectedOrder({ ...order, barrioEnvio: e.target.value })}
+                value={order.barrioOrigen}
+                onChange={(e) => setSelectedOrder({ ...order, barrioOrigen: e.target.value })}
               />
             </label>
           </div>
@@ -102,8 +105,8 @@ const ModalOrders = ({ order, setSelectedOrder, setOrders, setFilteredOrders, or
               Municipio:
               <input
                 type="text"
-                value={order.municipioEnvio}
-                onChange={(e) => setSelectedOrder({ ...order, municipioEnvio: e.target.value })}
+                value={order.municipioOrigen}
+                onChange={(e) => setSelectedOrder({ ...order, municipioOrigen: e.target.value })}
               />
             </label>
           </div>
@@ -112,12 +115,35 @@ const ModalOrders = ({ order, setSelectedOrder, setOrders, setFilteredOrders, or
               Departamento:
               <input
                 type="text"
-                value={order.departamentoEnvio}
-                onChange={(e) => setSelectedOrder({ ...order, departamentoEnvio: e.target.value })}
+                value={order.departamentoOrigen}
+                onChange={(e) => setSelectedOrder({ ...order, departamentoOrigen: e.target.value })}
               />
             </label>
           </div>
         </div>
+        <div className="form-fila">
+          <div className="form-columna">
+            <label>
+              Fecha de Entrada:
+              <input
+                type="text"
+                value={order.fechaEntrada}
+                onChange={(e) => setSelectedOrder({ ...order, fechaEntrada: e.target.value })}
+              />
+            </label>
+          </div>
+          <div className="form-columna">
+            <label>
+              Fecha de Salida:
+              <input
+                type="text"
+                value={order.fechaSalida}
+                onChange={(e) => setSelectedOrder({ ...order, fechaSalida: e.target.value })}
+              />
+            </label>
+          </div>
+        </div>
+
         <div className="boton-fila">
           <button onClick={() => handleUpdateOrder(order)}>Actualizar</button>
           <button onClick={confirmDeleteOrder}>Eliminar</button>

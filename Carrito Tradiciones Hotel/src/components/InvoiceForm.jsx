@@ -41,7 +41,13 @@ const InvoiceForm = ({ cartItems }) => {
       total: cartItems.reduce((sum, item) => sum + item.product.price * item.quantity, 0),
       nombreReserva: formData.name,
       telefonoReserva: formData.phone,
-      emailReserva: formData.email
+      emailReserva: formData.email,
+      paymentCode,
+      direccionOrigen: formData.address,
+      barrioOrigen: formData.barrio,
+      municipioOrigen: formData.municipio,
+      departamentoOrigen: formData.departamento
+
     };
 
     // Log completo de los datos recibidos y el objeto pedido
